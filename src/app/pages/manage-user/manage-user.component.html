@@ -138,7 +138,7 @@
         <th nzWidth="10%">Password</th>
         <th nzWidth="20%">Status</th>
         <th nzWidth="10%">Role</th>
-        <th nzWidth="15%">Action</th>
+        <th nzWidth="10%">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -147,10 +147,18 @@
         @if (!editCache[data.id].edit) {
         <td>{{ data.userName }}</td>
         <td>{{ data.userEmail }}</td>
-        <td>{{ data.password }}</td>
+        <td>•••••••••••</td>
         <td><nz-tag nzColor="green" [nzBordered]="false">Active</nz-tag></td>
         <td>Admin</td>
-        <td><a (click)="startEdit(data.id)">Edit</a> | <a>Delete</a></td>
+        <td>
+          <a (click)="startEdit(data.id)">
+            <i nz-icon nzType="edit"></i> Edit
+          </a>
+          |
+          <a (click)="deleteUser(data.id)">
+            <i nz-icon nzType="delete"></i> Delete
+          </a>
+        </td>
         } @else {
         <td>
           <input

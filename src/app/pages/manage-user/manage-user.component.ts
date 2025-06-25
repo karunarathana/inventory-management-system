@@ -88,6 +88,7 @@ export class ManageUserComponent {
           console.log('*******************');
           console.log(data);
           console.log('*******************');
+          this.loadTableData();
         });
       }
     } else {
@@ -130,6 +131,9 @@ export class ManageUserComponent {
   }
 
   ngOnInit(): void {
+    this.loadTableData();
+  }
+  loadTableData(): void {
     this._userService.searchAllUsers().subscribe((data) => {
       console.log('*******************');
       console.log(data);
@@ -151,4 +155,5 @@ export class ManageUserComponent {
       this.updateEditCache();
     });
   }
+  deleteUser(id: string): void {}
 }
