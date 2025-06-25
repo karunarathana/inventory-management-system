@@ -1,0 +1,26 @@
+.login-form {
+  width: 40%;
+  height: 50%;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+.main-wrapper-login{
+  display: flex;
+  justify-content: center;
+  height: 90%;
+}
+.login-wrapper p{
+  font-size: 2rem;
+  color: rgb(80, 80, 77);
+  font-weight: bold;
+}

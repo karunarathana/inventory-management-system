@@ -1,0 +1,190 @@
+<div>
+  <button nz-button nzType="primary" (click)="open()">Create</button>
+  <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="520"
+    [nzVisible]="visible"
+    nzTitle="Create New User"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+    <form nz-form [formGroup]="validateUserForm" *nzDrawerContent>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label nzRequired>User Name</nz-form-label>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <input
+                type="text"
+                nz-input
+                formControlName="username"
+                placeholder="Username"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label nzRequired>User Email</nz-form-label>
+            <nz-form-control nzErrorTip="Please input your userEmail!">
+              <input
+                type="text"
+                nz-input
+                formControlName="userEmail"
+                placeholder="UserEmail"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label nzRequired>Password</nz-form-label>
+            <nz-form-control nzErrorTip="Please input your password!">
+              <input
+                type="password"
+                nz-input
+                formControlName="password"
+                placeholder="Password"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control
+              [nzErrorTip]="
+                test
+                  ? 'Password Mismatched'
+                  : 'Please input your confirmPassword!'
+              "
+            >
+              <input
+                type="password"
+                nz-input
+                formControlName="confirmPassword"
+                placeholder="ConfirmPassword"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label nzRequired>Role</nz-form-label>
+            <nz-form-control nzErrorTip="Please select a role!">
+              <nz-select
+                formControlName="userRole"
+                nzPlaceHolder="Select a role"
+              >
+                <nz-option nzValue="ADMIN" nzLabel="ADMIN"></nz-option>
+                <nz-option
+                  nzValue="Super Admin"
+                  nzLabel="Super Admin"
+                ></nz-option>
+                <nz-option nzValue="User" nzLabel="User"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>Description</nz-form-label>
+            <nz-form-control>
+              <textarea
+                nz-input
+                placeholder="please enter url description"
+                [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button style="margin-right: 8px" (click)="close()">
+          Cancel
+        </button>
+        <button nz-button nzType="primary" (click)="submitForm()">
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+</div>
+<div class="manage-product-wrapper" style="margin-top: 20px">
+  <nz-table
+    #editRowTable
+    nzBordered
+    [nzData]="listOfData"
+    nzTableLayout="fixed"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="15%">UserName</th>
+        <th nzWidth="15%">UserEmail</th>
+        <th nzWidth="10%">Password</th>
+        <th nzWidth="20%">Status</th>
+        <th nzWidth="10%">Role</th>
+        <th nzWidth="15%">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of editRowTable.data; track data) {
+      <tr>
+        @if (!editCache[data.id].edit) {
+        <td>{{ data.userName }}</td>
+        <td>{{ data.userEmail }}</td>
+        <td>{{ data.password }}</td>
+        <td><nz-tag nzColor="green" [nzBordered]="false">Active</nz-tag></td>
+        <td>Admin</td>
+        <td><a (click)="startEdit(data.id)">Edit</a> | <a>Delete</a></td>
+        } @else {
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.userName"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.userEmail"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.password"
+          />
+        </td>
+        <td>
+          <a (click)="saveEdit(data.id)" class="save">Save</a>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Sure to cancel?"
+            (nzOnConfirm)="cancelEdit(data.id)"
+            >Cancel</a
+          >
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>

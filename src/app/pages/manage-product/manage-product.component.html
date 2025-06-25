@@ -1,0 +1,268 @@
+<div>
+  <h1>Manage Product 😁</h1>
+  <div class="create-product-btn-wrapper">
+    <button nz-button nzType="primary" (click)="open()">Add Product</button>
+  </div>
+  <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="520"
+    [nzVisible]="visible"
+    nzTitle="Create"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+    <form nz-form [formGroup]="validateProductForm" *nzDrawerContent>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Name</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product name!">
+              <input
+                type="text"
+                nz-input
+                formControlName="productName"
+                placeholder="please enter product name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Description</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product description!">
+              <input
+                type="text"
+                nz-input
+                formControlName="productDescription"
+                placeholder="please enter product description"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Price</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product price!">
+              <input
+                type="text"
+                nz-input
+                formControlName="productPrice"
+                placeholder="please enter product price"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Discount</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product discount!">
+              <input
+                type="text"
+                nz-input
+                formControlName="discountPrice"
+                placeholder="please enter product discount"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Last Price</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product last price!">
+              <input
+                type="text"
+                nz-input
+                formControlName="lastPrice"
+                placeholder="please enter product last price"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Brand</nz-form-label>
+            <nz-form-control nzErrorTip="Please select a brand!">
+              <nz-select
+                formControlName="brandName"
+                nzPlaceHolder="Select a Brand"
+              >
+                <nz-option nzValue="ADMIN" nzLabel="Apple"></nz-option>
+                <nz-option nzValue="Xiami" nzLabel="Xiomi"></nz-option>
+                <nz-option nzValue="User" nzLabel="Samsung"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Catgory</nz-form-label>
+            <nz-form-control nzErrorTip="Please select a catogary!">
+              <nz-select
+                formControlName="productCategory"
+                nzPlaceHolder="Select a catogory"
+              >
+                <nz-option nzValue="ADMIN" nzLabel="Touch"></nz-option>
+                <nz-option nzValue="Xiami" nzLabel="Battery"></nz-option>
+                <nz-option nzValue="User" nzLabel="Display"></nz-option>
+                <nz-option nzValue="User" nzLabel="Button"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Color</nz-form-label>
+            <nz-form-control nzErrorTip="Please select a color!">
+              <nz-select
+                formControlName="productColor"
+                nzPlaceHolder="Select a color"
+              >
+                <nz-option nzValue="ADMIN" nzLabel="RED"></nz-option>
+                <nz-option nzValue="Xiami" nzLabel="BLACK"></nz-option>
+                <nz-option nzValue="User" nzLabel="GREEN"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Stock</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product stock!">
+              <input
+                type="text"
+                nz-input
+                formControlName="productStock"
+                placeholder="please enter product stock"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Warranty</nz-form-label>
+            <nz-form-control nzErrorTip="Please input product Warranty!">
+              <input
+                type="text"
+                nz-input
+                formControlName="warrantyPeriod"
+                placeholder="please enter product Warranty"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter user name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-label>Name</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="please enter user name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>Others</nz-form-label>
+            <nz-form-control>
+              <textarea
+                nz-input
+                formControlName="others"
+                placeholder="please enter url description"
+                [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button style="margin-right: 8px" (click)="close()">
+          Cancel
+        </button>
+        <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+</div>
+
+<div class="manage-product-wrapper">
+  <nz-table
+    #editRowTable
+    nzBordered
+    [nzData]="listOfData"
+    nzTableLayout="fixed"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="25%">Name</th>
+        <th nzWidth="15%">Age</th>
+        <th nzWidth="40%">Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of editRowTable.data; track data) {
+      <tr>
+        @if (!editCache[data.id].edit) {
+        <td>{{ data.name }}</td>
+        <td>{{ data.age }}</td>
+        <td>{{ data.address }}</td>
+        <td><a (click)="startEdit(data.id)">Edit</a> | <a>Delete</a></td>
+        } @else {
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.name"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.age"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            nz-input
+            [(ngModel)]="editCache[data.id].data.address"
+          />
+        </td>
+        <td>
+          <a (click)="saveEdit(data.id)" class="save">Save</a>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Sure to cancel?"
+            (nzOnConfirm)="cancelEdit(data.id)"
+            >Cancel</a
+          >
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>

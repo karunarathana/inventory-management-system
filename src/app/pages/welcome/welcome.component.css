@@ -1,0 +1,11 @@
+.no-data-image{
+    width: 400px;
+    height: 350px;
+}
+.data-not-found-main-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
