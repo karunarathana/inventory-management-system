@@ -17,6 +17,7 @@ import { UserDto } from '../../dto/user-dto';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { UserService } from '../../service/users.service';
+import { log } from 'node:console';
 
 interface ItemData {
   id: string;
@@ -145,15 +146,24 @@ export class ManageUserComponent {
         // name: user.userName,
         // age: user.email || 32, // fallback if no age
         // address: user.address || `London Park no. ${index}`,
-        id: user.id,
+        id: user.userId,
         userName: user.userName,
         userEmail: user.email,
+        role: user.role,
         password: user.password,
       }));
-
+      console.log(userData);
+      
       this.listOfData = userData;
       this.updateEditCache();
     });
   }
-  deleteUser(id: string): void {}
+  deleteUser(id: string): void {
+    this._userService.deleteUser(Number(id)).subscribe((data) => {
+      console.log('*******************');
+      console.log(data);
+      console.log('*******************');
+      this.loadTableData();
+    });
+  }
 }
