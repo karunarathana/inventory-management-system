@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:inventory_system": "node dist/inventory_system/server/server.mjs",
-    "postinstall": "prisma generator"
+    "postinstall": "prisma generate"
   },
   "private": true,
   "dependencies": {
