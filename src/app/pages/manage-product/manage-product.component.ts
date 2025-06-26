@@ -139,6 +139,7 @@ export class ManageProductComponent {
         console.log('*******************');
         console.log(data);
         console.log('*******************');
+        this.loadTableData();
       });
     } else {
       Object.values(this.validateProductForm.controls).forEach((control) => {

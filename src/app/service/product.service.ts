@@ -24,6 +24,7 @@ export class ProductService {
             'Access-Control-Allow-Origin': '*',
             Authorization: `Bearer ${accessToken}`,
           },
+          responseType: 'text' as 'json',
         }
       )
       .pipe(

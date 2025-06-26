@@ -1,62 +1,82 @@
-<!-- <p>product works!</p>
-<button nz-button (click)="openModal()">Open from A</button> -->
-
 <p class="header-content">Hi Welcome 👋</p>
 <div class="product-card-container">
-    <div (click)="loadAllProductByProductCategory('Battery')" class="product-card">
-        <div>
-            <img style="width: 40px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Battery phone</p>
+  <div
+    (click)="loadAllProductByProductCategory('Battery')"
+    class="product-card"
+  >
+    <div>
+      <img style="width: 40px" src="assets/charging.png" alt="" srcset="" />
     </div>
-    <div class="product-card">
-        <div>
-           <img style="width: 40px;" src="assets/smartphone-call.png" alt="" srcset="">
-        </div>
-        <p>Touch Phone</p>
+    <p>Battery phone</p>
+  </div>
+  <div
+    (click)="loadAllProductByProductCategory('Smartphone')"
+    class="product-card"
+  >
+    <div>
+      <img
+        style="width: 40px"
+        src="assets/smartphone-call.png"
+        alt=""
+        srcset=""
+      />
     </div>
-    <div class="product-card">
-        <div>
-            <img style="width: 40px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Button Phone</p>
+    <p>Touch Phone</p>
+  </div>
+  <div class="product-card">
+    <div>
+      <img style="width: 40px" src="assets/charging.png" alt="" srcset="" />
     </div>
-    <div class="product-card">
-        <div>
-            <img style="width: 40px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Mobile Parts</p>
+    <p>Button Phone</p>
+  </div>
+  <div class="product-card">
+    <div>
+      <img style="width: 40px" src="assets/charging.png" alt="" srcset="" />
     </div>
-    <div class="product-card">
-        <div>
-            <img style="width: 40px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Mobile Parts</p>
+    <p>Mobile Parts</p>
+  </div>
+  <div class="product-card">
+    <div>
+      <img style="width: 40px" src="assets/charging.png" alt="" srcset="" />
     </div>
-    <div class="product-card">
-        <div>
-            <img style="width: 40px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Mobile Parts</p>
+    <p>Mobile Parts</p>
+  </div>
+  <div class="product-card">
+    <div>
+      <img style="width: 40px" src="assets/charging.png" alt="" srcset="" />
     </div>
-    <div class="product-card">
-        <div>
-            <img style="width: 50px;" src="assets/charging.png" alt="" srcset="">
-        </div>
-        <p>Mobile Parts</p>
+    <p>Mobile Parts</p>
+  </div>
+  <div class="product-card">
+    <div>
+      <img style="width: 50px" src="assets/charging.png" alt="" srcset="" />
     </div>
+    <p>Mobile Parts</p>
+  </div>
 </div>
 <div class="test">
-    <div class="product-item-main-wrapper">
-        <div  class="product-item">
-            <div class="product-item-image">
-                <img style="width: 50px;" src="assets/charging.png" alt="" srcset="">
-            </div>
-            <div class="product-item-details">
-                <p>Battery Phone</p>
-                <p>Price: $100</p>
-            </div>
-            <button nz-button nzType="primary" (click)="openModal('100')">View Details</button>
-        </div>
+  <div *ngFor="let item of listOfData" class="product-item-main-wrapper">
+    <div class="product-item">
+      <div class="product-item-image">
+        <img
+          style="width: 50px"
+          [src]="'assets/' + imageUrl"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="product-item-details">
+        <h3 class="card-title">{{ item.productName }}</h3>
+        <p class="card-price">Price: Rs. {{ item.productPrice }}</p>
+      </div>
+      <div>
+        <nz-tag nzColor="green" [nzBordered]="false">Active</nz-tag>
+      </div>
+      <div style="margin-top: 5px;">
+        <button class="custom-view-btn" (click)="openModal(item)">
+          👁️ View Details
+        </button>
+      </div>
     </div>
+  </div>
 </div>

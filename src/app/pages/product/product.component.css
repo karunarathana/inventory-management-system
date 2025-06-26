@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgb(151, 201, 248);
+  border: 2px solid rgb(171, 210, 247);
   width: 12em;
   padding: 20px;
   height: 110px;
@@ -52,17 +52,23 @@
   background: #555;
 }
 .product-item-main-wrapper {
-  border: 1px solid rgb(36, 79, 236);
+  border: 1px solid rgb(127, 153, 249);
   border-radius: 10px;
   width: 15em;
   height: 15em;
   padding: 10px;
 }
 .product-item-details {
+  margin-top: 10px;
+}
+.product-item-image{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .test {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: 10px;
   height: 230px;
   overflow-x: hidden; /* Horizontal scroll when needed */
@@ -77,3 +83,24 @@
   font-weight: bold;
   color: #6bd6f4;
 }
+/* component.css */
+.custom-view-btn {
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+}
+
+.custom-view-btn:hover {
+  background: linear-gradient(135deg, #3f45c3, #7e84f7);
+  box-shadow: 0 6px 20px rgba(78, 84, 200, 0.6);
+  transform: translateY(-2px);
+}
+
+
