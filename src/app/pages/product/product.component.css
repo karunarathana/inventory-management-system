@@ -1,30 +1,32 @@
-.product-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid rgb(151, 201, 248);
-    width: 12em;
-    padding: 20px;
-    height: 110px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(235, 233, 233, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(151, 201, 248);
+  width: 12em;
+  padding: 20px;
+  height: 110px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(235, 233, 233, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.product-card-container :hover{
-    cursor: pointer;
-    background-color: #e5e7ea;
-    color: #888282;
+.product-card-container :hover {
+  cursor: pointer;
+  background-color: #e5e7ea;
+  color: #888282;
 }
-.product-card p{
-    font-weight: bold;
-    color: rgba(45, 44, 44, 0.868);
-    font-size: 1.2rem;
+.product-card p {
+  font-weight: bold;
+  color: rgba(45, 44, 44, 0.868);
+  font-size: 1.2rem;
 }
 .product-card-container {
+  margin-top: -20px;
   display: flex;
   gap: 10px;
-  overflow-x: auto;    /* Horizontal scroll when needed */
-  overflow-y: hidden;  /* Prevent vertical scroll */
+  overflow-x: auto; /* Horizontal scroll when needed */
+  overflow-y: hidden; /* Prevent vertical scroll */
   white-space: nowrap; /* Prevent items from wrapping */
   padding-bottom: 10px; /* Space for scrollbar */
   scrollbar-width: thin; /* For Firefox */
@@ -49,28 +51,28 @@
 .product-card-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.product-item-main-wrapper{
-    border: 1px solid rgb(36, 79, 236);
-    border-radius: 10px;
-    width: 15em;
-    height: 15em;
-    padding: 10px;
+.product-item-main-wrapper {
+  border: 1px solid rgb(36, 79, 236);
+  border-radius: 10px;
+  width: 15em;
+  height: 15em;
+  padding: 10px;
 }
-.product-item-details{
-    display: flex;
-    justify-content: space-between;
+.product-item-details {
+  display: flex;
+  justify-content: space-between;
 }
-.test{
+.test {
   margin-top: 10px;
   height: 230px;
-  overflow-x: hidden;    /* Horizontal scroll when needed */
-  overflow-y: auto;  /* Prevent vertical scroll */
+  overflow-x: hidden; /* Horizontal scroll when needed */
+  overflow-y: auto; /* Prevent vertical scroll */
   white-space: nowrap; /* Prevent items from wrapping */
   padding-bottom: 10px; /* Space for scrollbar */
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: #888 #f1f1f1; /* For Firefox */
 }
-.header-content{
+.header-content {
   font-size: 1.7rem;
   font-weight: bold;
   color: #6bd6f4;

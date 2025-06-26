@@ -22,8 +22,10 @@ export class AppComponent {
   isCollapsed = false;
   userName: string | null = 'Undefined';
 
-  ngonInit(): void {
+  ngOnInit(): void {
     console.log('AppComponent initialized');
     this.userName = localStorage.getItem('loggedUserName') ?? 'unknown';
+    console.log(this.userName);
+    
   }
 }

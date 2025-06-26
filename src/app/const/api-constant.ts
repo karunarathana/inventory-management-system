@@ -10,5 +10,8 @@ export const ApiConstant = {
   ACCESS_TOKEN_REMOVE: '/oauth/token',
   AUTH_URL: '',
 
+  VIEW_ALL_PRODUCT : "/view-product",
+  VIEW_ALL_PRODUCT_BY_CATEGORY: '/view-product-by-category',
+
   CREATE_PRODUCT: '/add-product',
 };

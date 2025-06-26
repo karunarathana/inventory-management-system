@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -8,7 +9,6 @@ import {
 } from '@angular/forms';
 
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
@@ -19,11 +19,20 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { ProductDto } from '../../dto/product-dto';
 import { ProductService } from '../../service/product.service';
 
-interface ItemData {
-  id: string;
-  name: string;
-  age: number;
-  address: string;
+interface ProductData {
+  productID: string;
+  productName: string;
+  productDescription: string;
+  productPrice: string;
+  discountPrice: string;
+  lastPrice: string;
+  brandName: string;
+  productCreateData: Date;
+  productCategory: string;
+  productColor: string;
+  others: string;
+  productStock: string;
+  warrantyPeriod: string;
 }
 
 @Component({
@@ -39,6 +48,7 @@ interface ItemData {
     NzTableModule,
     NzTagModule,
     ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './manage-product.component.html',
   styleUrl: './manage-product.component.css',
@@ -46,7 +56,10 @@ interface ItemData {
 export class ManageProductComponent {
   validateProductForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private _productService: ProductService) {
+  constructor(
+    private fb: FormBuilder,
+    private _productService: ProductService
+  ) {
     this.validateProductForm = this.fb.group({
       productName: this.fb.control('', [Validators.required]),
       productDescription: this.fb.control('', [Validators.required]),
@@ -61,15 +74,15 @@ export class ManageProductComponent {
       warrantyPeriod: this.fb.control('', [Validators.required]),
     });
   }
-  editCache: { [key: string]: { edit: boolean; data: ItemData } } = {};
-  listOfData: ItemData[] = [];
+  editCache: { [key: string]: { edit: boolean; data: ProductData } } = {};
+  listOfData: ProductData[] = [];
 
   startEdit(id: string): void {
     this.editCache[id].edit = true;
   }
 
   cancelEdit(id: string): void {
-    const index = this.listOfData.findIndex((item) => item.id === id);
+    const index = this.listOfData.findIndex((item) => item.productID === id);
     this.editCache[id] = {
       data: { ...this.listOfData[index] },
       edit: false,
@@ -77,14 +90,14 @@ export class ManageProductComponent {
   }
 
   saveEdit(id: string): void {
-    const index = this.listOfData.findIndex((item) => item.id === id);
+    const index = this.listOfData.findIndex((item) => item.productID === id);
     Object.assign(this.listOfData[index], this.editCache[id].data);
     this.editCache[id].edit = false;
   }
 
   updateEditCache(): void {
     this.listOfData.forEach((item) => {
-      this.editCache[item.id] = {
+      this.editCache[item.productID] = {
         edit: false,
         data: { ...item },
       };
@@ -92,17 +105,7 @@ export class ManageProductComponent {
   }
 
   ngOnInit(): void {
-    const data: ItemData[] = [];
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        id: `${i}`,
-        name: `Edward ${i}`,
-        age: 32,
-        address: `London Park no. ${i}`,
-      });
-    }
-    this.listOfData = data;
-    this.updateEditCache();
+    this.loadTableData();
   }
   visible = false;
 
@@ -132,6 +135,11 @@ export class ManageProductComponent {
 
     if (this.validateProductForm.valid) {
       console.log('submit', this.validateProductForm.value);
+      this._productService.createProduct(productDto).subscribe((data) => {
+        console.log('*******************');
+        console.log(data);
+        console.log('*******************');
+      });
     } else {
       Object.values(this.validateProductForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -140,5 +148,36 @@ export class ManageProductComponent {
         }
       });
     }
+  }
+
+  loadTableData(): void {
+    this._productService.searchAllProduct().subscribe((data) => {
+      console.log('*******************');
+      console.log(data);
+      console.log('*******************');
+
+      // Transform server response to ItemData[]
+      const userData: ProductData[] = data.items.map(
+        (product: any, index: number) => ({
+          productID: product.productID,
+          productName: product.productName,
+          productDescription: product.productDescription,
+          productPrice: product.productPrice,
+          discountPrice: product.discountPrice,
+          lastPrice: product.lastPrice,
+          brandName: product.brandName,
+          productCreateData: Date,
+          productCategory: product.productCategory,
+          productColor: product.productColor,
+          others: product.others,
+          productStock: product.productStock,
+          warrantyPeriod: product.warrantyPeriod,
+        })
+      );
+      console.log(userData);
+
+      this.listOfData = userData;
+      this.updateEditCache();
+    });
   }
 }

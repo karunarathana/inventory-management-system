@@ -91,9 +91,10 @@
                 formControlName="brandName"
                 nzPlaceHolder="Select a Brand"
               >
-                <nz-option nzValue="ADMIN" nzLabel="Apple"></nz-option>
-                <nz-option nzValue="Xiami" nzLabel="Xiomi"></nz-option>
-                <nz-option nzValue="User" nzLabel="Samsung"></nz-option>
+                <nz-option nzValue="APPLE" nzLabel="APPLE"></nz-option>
+                <nz-option nzValue="XIAOMI" nzLabel="XIAOMI"></nz-option>
+                <nz-option nzValue="SAMSUNG" nzLabel="SAMSUNG"></nz-option>
+                <nz-option nzValue="NOKIA" nzLabel="NOKIA"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -108,10 +109,10 @@
                 formControlName="productCategory"
                 nzPlaceHolder="Select a catogory"
               >
-                <nz-option nzValue="ADMIN" nzLabel="Touch"></nz-option>
-                <nz-option nzValue="Xiami" nzLabel="Battery"></nz-option>
-                <nz-option nzValue="User" nzLabel="Display"></nz-option>
-                <nz-option nzValue="User" nzLabel="Button"></nz-option>
+                <nz-option nzValue="Samart" nzLabel="Touch"></nz-option>
+                <nz-option nzValue="Battery" nzLabel="Battery"></nz-option>
+                <nz-option nzValue="Display" nzLabel="Display"></nz-option>
+                <nz-option nzValue="Button" nzLabel="Button"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -124,9 +125,9 @@
                 formControlName="productColor"
                 nzPlaceHolder="Select a color"
               >
-                <nz-option nzValue="ADMIN" nzLabel="RED"></nz-option>
-                <nz-option nzValue="Xiami" nzLabel="BLACK"></nz-option>
-                <nz-option nzValue="User" nzLabel="GREEN"></nz-option>
+                <nz-option nzValue="Red" nzLabel="RED"></nz-option>
+                <nz-option nzValue="Balck" nzLabel="BLACK"></nz-option>
+                <nz-option nzValue="Green" nzLabel="GREEN"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -200,7 +201,9 @@
         <button nz-button style="margin-right: 8px" (click)="close()">
           Cancel
         </button>
-        <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+        <button nz-button nzType="primary" (click)="submitForm()">
+          Submit
+        </button>
       </div>
     </ng-template>
   </nz-drawer>
@@ -215,26 +218,44 @@
   >
     <thead>
       <tr>
-        <th nzWidth="25%">Name</th>
-        <th nzWidth="15%">Age</th>
-        <th nzWidth="40%">Address</th>
-        <th>Action</th>
+        <th nzWidth="120px">Name</th>
+        <th nzWidth="150px">Description</th>
+        <th nzWidth="95px">Price</th>
+        <th nzWidth="95px">Discount</th>
+        <th nzWidth="95px">Last Price</th>
+        <th nzWidth="95px">Brand</th>
+        <th nzWidth="130px">Created Date</th>
+        <th nzWidth="95px">Category</th>
+        <th nzWidth="95px">Color</th>
+        <th nzWidth="95px">Others</th>
+        <th nzWidth="95px">Stock</th>
+        <th nzWidth="95px">Warranty</th>
+        <th nzWidth="130px">Action</th>
       </tr>
     </thead>
     <tbody>
       @for (data of editRowTable.data; track data) {
       <tr>
-        @if (!editCache[data.id].edit) {
-        <td>{{ data.name }}</td>
-        <td>{{ data.age }}</td>
-        <td>{{ data.address }}</td>
-        <td><a (click)="startEdit(data.id)">Edit</a> | <a>Delete</a></td>
+        @if (!editCache[data.productID].edit) {
+        <td>{{ data.productName }}</td>
+        <td>{{ data.productDescription }}</td>
+        <td>{{ data.productPrice }}</td>
+        <td>{{ data.discountPrice }}</td>
+        <td>{{ data.lastPrice }}</td>
+        <td>{{ data.brandName }}</td>
+        <td>{{"Date"}}</td>
+        <td>{{ data.productCategory }}</td>
+        <td>{{ data.productColor }}</td>
+        <td>{{ data.others }}</td>
+        <td>{{ data.productStock }}</td>
+        <td>{{ data.warrantyPeriod }}</td>
+        <td><a (click)="startEdit(data.productID)">Edit</a> | <a>Delete</a></td>
         } @else {
-        <td>
+        <!-- <td>
           <input
             type="text"
             nz-input
-            [(ngModel)]="editCache[data.id].data.name"
+            [(ngModel)]="editCache[data.productID].data.name"
           />
         </td>
         <td>
@@ -250,13 +271,13 @@
             nz-input
             [(ngModel)]="editCache[data.id].data.address"
           />
-        </td>
+        </td> -->
         <td>
-          <a (click)="saveEdit(data.id)" class="save">Save</a>
+          <a (click)="saveEdit(data.productID)" class="save">Save</a>
           <a
             nz-popconfirm
             nzPopconfirmTitle="Sure to cancel?"
-            (nzOnConfirm)="cancelEdit(data.id)"
+            (nzOnConfirm)="cancelEdit(data.productID)"
             >Cancel</a
           >
         </td>

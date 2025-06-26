@@ -1,10 +1,12 @@
 .save {
   margin-right: 8px;
 }
-.manage-product-wrapper{
+.manage-product-wrapper {
   height: 300px;
-  overflow-x: scroll;
+  overflow: auto; /* equivalent to both x and y scroll when needed */
+  box-sizing: border-box; /* ensures padding/border doesn't overflow */
 }
+
 .create-product-btn-wrapper{
   display: flex;
   justify-content: end;
